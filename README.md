@@ -91,6 +91,12 @@ vim /etc/kibana/kibana.yml
 ```yaml
 server.host: "0.0.0.0"
 ```
+```
+systemctl restart kibana
+systemctl status kibana
+```
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/1bc440c9-54dd-4a0c-9938-461da7dbbb40)
+
 
 ---
 
