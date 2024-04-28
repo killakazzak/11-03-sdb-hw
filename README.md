@@ -74,6 +74,24 @@ curl 'localhost:9200/_cluster/health?pretty'
 *Приведите скриншот интерфейса Kibana на странице http://<ip вашего сервера>:5601/app/dev_tools#/console, где будет выполнен запрос GET /_cluster/health?pretty*.
 
 ### Решение Задание 2. Kibana
+
+Устанавливаем Kibana
+
+```bash
+apt install kibana <--установка
+systemctl daemon-reload <--обновляем конфиги systemd
+systemctl enable kibana.service <--включаем юнит
+systemctl start kibana.service <--запускаем сервис
+```
+Настраиваем Kibana
+
+```
+vim /etc/kibana/kibana.yml
+```
+```yaml
+server.host: "0.0.0.0"
+```
+
 ---
 
 ### Задание 3. Logstash
