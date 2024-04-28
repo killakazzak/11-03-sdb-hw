@@ -117,7 +117,9 @@ systemctl status kibana
 Устанавливаем Logstash
 
 ```bash
-apt install logstash <--установка
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - <--добавляем gpg-ключ 
+echo "deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/7/ stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list <--добавляем репозиторий в apt 
+apt update && apt install logstash <--устанавливаем logstash
 systemctl daemon-reload <--обновляем конфиги systemd
 systemctl enable logstash.service <--включаем юнит
 systemctl start logstash.service <--запускаем сервис
