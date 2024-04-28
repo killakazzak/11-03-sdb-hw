@@ -24,6 +24,25 @@
 
 ### Решение Задание 1. Elasticsearch 
 
+Устанавливаем Elasticsearch
+
+```bash
+apt update && apt install gnupg apt-transport-https <--зависимости 
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - <--добавляем gpg-ключ 
+echo "deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/7/ stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list <--добавляем репозиторий в apt 
+apt update && apt-get install elasticsearch <--устанавливаем elastic 
+systemctl daemon-reload <--обновляем конфиги systemd 
+systemctl enable elasticsearch.service <--включаем юнит 
+systemctl start elasticsearch.service <--запускаем сервис
+```
+Проверяем установку и запуск Elasticsearch
+```
+curl 'localhost:9200/_cluster/health?pretty'
+```
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/a657f7b3-208f-427d-b397-b2966c8e2533)
+
+
+
 ---
 
 ### Задание 2. Kibana
