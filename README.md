@@ -41,6 +41,28 @@ curl 'localhost:9200/_cluster/health?pretty'
 ```
 ![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/a657f7b3-208f-427d-b397-b2966c8e2533)
 
+Настраиваем Elasticsearch
+
+```
+vim  /etc/elasticsearch/elasticsearch.yml
+```
+```yaml
+cluster.name: netology-logging <--меняем имя кластера
+node.name: node-1 <--меняем название ноды
+node.roles: [ master, data, ingest ] <--какую функцию будет выполнять эта нода
+cluster.initial_master_nodes: ["node-1"] <--узлы, участвующие в голосовании по выбору мастера
+discovery.seed_hosts: ["10.159.86.95"] <--список возможных мастеров кластера
+path.data: /var/lib/elasticsearch <-где храним данные
+```
+Проверяем изменения конфигурации
+
+```bash
+systemctl restart elasticsearch
+curl 'localhost:9200/_cluster/health?pretty'
+```
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/c4aa9693-bf1a-40b6-953f-ffb29c7f523d)
+
+
 
 
 ---
