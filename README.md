@@ -95,7 +95,13 @@ server.host: "0.0.0.0"
 systemctl restart kibana
 systemctl status kibana
 ```
+
+Проверяем установку Kibana
+
 ![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/1bc440c9-54dd-4a0c-9938-461da7dbbb40)
+
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/ce70547b-9769-4199-9c00-69f5bcca1e1d)
+
 
 
 ---
