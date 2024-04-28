@@ -114,6 +114,15 @@ systemctl status kibana
 
 ### Решение Задание 3. Logstash
 
+Устанавливаем Logstash
+
+```bash
+apt install logstash <--установка
+systemctl daemon-reload <--обновляем конфиги systemd
+systemctl enable logstash.service <--включаем юнит
+systemctl start logstash.service <--запускаем сервис
+```
+
 ---
 
 ### Задание 4. Filebeat. 
