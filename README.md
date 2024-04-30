@@ -153,7 +153,8 @@ output {
 
 Проверка
 
-![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/40cac0e6-0727-4900-84b5-51d4f897f7b7)
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/fed7d9bf-ecdd-44f1-aca9-b8fa888d7ce6)
+
 
 
 
