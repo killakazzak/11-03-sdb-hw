@@ -155,10 +155,6 @@ output {
 
 ![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/fed7d9bf-ecdd-44f1-aca9-b8fa888d7ce6)
 
-
-
-
-
 ---
 
 ### Задание 4. Filebeat. 
@@ -168,6 +164,18 @@ output {
 *Приведите скриншот интерфейса Kibana, на котором видны логи Nginx, которые были отправлены через Filebeat.*
 
 ### Решение Задание 4. Filebeat. 
+
+Устанавливаем Filebeat
+
+```bash
+apt install filebeat <--установка
+systemctl daemon-reload <--обновляем конфиги systemd
+systemctl enable filebeat.service <--включаем юнит
+systemctl start filebeat.service <--запускаем сервис
+```
+
+Настраиваем Filebeat для отправки в Logstash:
+
 
 
 ## Дополнительные задания (со звёздочкой*)
