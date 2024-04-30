@@ -114,7 +114,7 @@ systemctl status kibana
 
 ### Решение Задание 3. Logstash
 
-Устанавливаем на 2й сервер Logstash и nginx
+Устанавливаем Logstash и nginx
 
 ```bash
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - <--добавляем gpg-ключ 
@@ -127,6 +127,36 @@ systemctl start logstash.service <--запускаем сервис
 systemctl enable nginx <--включаем юнит
 systemctl start nginx <--запускаем сервис
 ```
+Настраиваем Logstash
+
+```
+vim /etc/logstash/conf.d/logstash.conf
+```
+
+```yaml
+input {
+  file {
+    path => "/var/log/nginx/access.log"
+    start_position => "beginning"
+  }
+}
+
+
+output {
+  elasticsearch {
+     hosts => ["localhost:9200"]
+     index    => "nginx-logs-%{+YYYY.MM.dd}"
+  }
+}
+```
+
+
+Проверка
+
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/40cac0e6-0727-4900-84b5-51d4f897f7b7)
+
+
+
 
 ---
 
