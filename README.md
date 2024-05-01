@@ -242,7 +242,6 @@ input {
   file {
     path => "/var/log/apache2/access.log"
     start_position => "beginning"
-    sincedb_path => "/dev/null"
   }
 }
 
