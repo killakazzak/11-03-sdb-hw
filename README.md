@@ -228,6 +228,15 @@ processors:
 
 ### Решение Задание 5*. Доставка данных 
 
+Устанавливаем Apache
+
+apt install apache2
+systemctl enable --now apache
+
+Настраиваем отправку и получение логов Apache через Logstash
+
+logstash.conf
+```yaml
 
 
 
