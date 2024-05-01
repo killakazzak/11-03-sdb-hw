@@ -178,7 +178,7 @@ systemctl start filebeat.service <--запускаем сервис
 vim /etc/logstash/conf.d/logstash.conf
 ```
 logstash.conf
-```
+```yaml
 input {
   beats {
     port => 5044
@@ -227,3 +227,47 @@ processors:
 *Приведите скриншот интерфейса Kibana, на котором будет виден этот лог и напишите лог какого приложения отправляется.*
 
 ### Решение Задание 5*. Доставка данных 
+
+
+
+
+
+
+Настройка отправку и получение логов Apache через Filebeate и Logstash
+
+logstash.conf
+
+```yaml
+input {
+  beats {
+    port => 5044
+  }
+}
+
+output {
+  elasticsearch {
+     hosts => ["10.159.86.95:9200"]
+     index    => "apache-logs-%{+YYYY.MM.dd}"
+  }
+}
+```
+
+filebeat.yml
+
+```yaml
+- type: log
+  enabled: true
+  paths:
+    - /var/log/apache2/access.log
+
+output.logstash:
+  hosts: ["10.159.86.95:5044"]
+
+processors:
+  - drop_fields:
+      fields: ["beat", "input_type", "prospector", "input", "ecs"]
+```
+
+Проверка получения логов Apache через filebeat
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/b1423fd5-1ed1-4453-a5a7-b2ff27e36459)
+
