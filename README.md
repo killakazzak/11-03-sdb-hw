@@ -173,9 +173,47 @@ systemctl daemon-reload <--обновляем конфиги systemd
 systemctl enable filebeat.service <--включаем юнит
 systemctl start filebeat.service <--запускаем сервис
 ```
+Настраиваем Logstash для приема логов с Filebeat
+```bash
+vim /etc/logstash/conf.d/logstash.conf
+```
+logstash.conf
+```
+input {
+  beats {
+    port => 5044
+  }
+}
 
+output {
+  elasticsearch {
+     hosts => ["10.159.86.95:9200"]
+     index    => "nginx-logs-%{+YYYY.MM.dd}"
+  }
+}
+```
 Настраиваем Filebeat для отправки в Logstash:
+```bash
+vim /etc/filebeat/filebeat.yml
+```
+filebeat.yml
 
+```yaml
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/access.log
+
+output.logstash:
+  hosts: ["10.159.86.95:5044"]
+
+processors:
+  - drop_fields:
+      fields: ["beat", "input_type", "prospector", "input", "ecs"]
+```
+
+Проверка
+![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/e0fb4389-0047-411d-af8f-d42cb16c3802)
 
 
 ## Дополнительные задания (со звёздочкой*)
