@@ -236,7 +236,24 @@ systemctl enable --now apache
 Настраиваем отправку и получение логов Apache через Logstash
 
 logstash.conf
+
 ```yaml
+input {
+  file {
+    path => "/var/log/apache2/access.log"
+    start_position => "beginning"
+    sincedb_path => "/dev/null"
+  }
+}
+
+output {
+  elasticsearch {
+     hosts => ["10.159.86.95:9200"]
+     index    => "apache2-logs-%{+YYYY.MM.dd}"
+  }
+}
+```
+
 
 
 
@@ -278,5 +295,6 @@ processors:
 ```
 
 Проверка получения логов Apache через filebeat
+
 ![image](https://github.com/killakazzak/11-03-sdb-hw/assets/32342205/b1423fd5-1ed1-4453-a5a7-b2ff27e36459)
 
